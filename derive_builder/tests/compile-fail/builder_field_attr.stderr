@@ -1,0 +1,5 @@
+error: cannot find attribute `no_such_attribute` in this scope
+ --> tests/compile-fail/builder_field_attr.rs:9:21
+  |
+9 |     #[builder(attrs(no_such_attribute))]
+  |                     ^^^^^^^^^^^^^^^^^
