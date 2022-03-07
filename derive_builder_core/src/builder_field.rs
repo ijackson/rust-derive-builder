@@ -1,6 +1,7 @@
 use proc_macro2::TokenStream;
 use quote::{ToTokens, TokenStreamExt};
 use syn;
+use syn::spanned::Spanned;
 
 /// Field for the builder struct, implementing `quote::ToTokens`.
 ///
@@ -45,6 +46,8 @@ pub struct BuilderField<'a> {
     pub field_visibility: syn::Visibility,
     /// Attributes passed through, to be attached to this builder field.
     pub pass_attrs: &'a [syn::Attribute],
+    /// Extra attributes explicitly requested to be attached to the builder field.
+    pub nested_attrs: &'a [syn::Meta],
 }
 
 impl<'a> ToTokens for BuilderField<'a> {
@@ -55,8 +58,15 @@ impl<'a> ToTokens for BuilderField<'a> {
             let ty = self.field_type;
             let pass_attrs = self.pass_attrs;
 
+            // The input tokens do not contain the #[ ] parts of an attribute, so we must provide them.
+            // And we want to give these extra tokens a span derived from the input.
+            let nested_attrs = self
+                .nested_attrs
+                .iter()
+                .map(|meta| quote_spanned!(meta.span() => #[#meta]));
             tokens.append_all(quote!(
-                #(#pass_attrs)* #vis #ident: ::derive_builder::export::core::option::Option<#ty>,
+                #(#pass_attrs)* #(#nested_attrs)*
+                #vis #ident: ::derive_builder::export::core::option::Option<#ty>,
             ));
         } else {
             let ident = self.field_ident;
@@ -90,6 +100,7 @@ macro_rules! default_builder_field {
             field_enabled: true,
             field_visibility: parse_quote!(pub),
             pass_attrs: &[parse_quote!(#[some_attr])],
+            nested_attrs: &[],
         }
     }};
 }

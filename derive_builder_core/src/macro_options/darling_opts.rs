@@ -6,7 +6,7 @@ use darling::util::{Flag, PathList};
 use darling::{self, FromMeta};
 use proc_macro2::Span;
 use syn::Meta;
-use syn::{self, spanned::Spanned, Attribute, Generics, Ident, Path, Visibility};
+use syn::{self, spanned::Spanned, Attribute, Generics, Ident, NestedMeta, Path, Visibility};
 
 use crate::{
     Builder, BuilderField, BuilderPattern, DefaultExpression, DeprecationNotes, Each, Initializer,
@@ -206,6 +206,25 @@ fn field_setter(meta: &Meta) -> darling::Result<FieldLevelSetter> {
     }
 }
 
+/// The contents of `#[builder(attrs( ... ))]`, on a field
+#[derive(Debug, Clone, Default)]
+struct NestedAttrs {
+    attrs: Vec<syn::Meta>,
+}
+
+impl FromMeta for NestedAttrs {
+    fn from_list(items: &[NestedMeta]) -> darling::Result<Self> {
+        let attrs = items
+            .iter()
+            .map(|item| match item {
+                NestedMeta::Lit(lit) => Err(darling::Error::unexpected_lit_type(lit)),
+                NestedMeta::Meta(meta) => Ok(meta.clone()),
+            })
+            .collect::<Result<Vec<_>, _>>()?;
+        Ok(NestedAttrs { attrs })
+    }
+}
+
 /// Data extracted from the fields of the input struct.
 #[derive(Debug, Clone, FromField)]
 #[darling(attributes(builder), forward_attrs(doc, cfg, allow))]
@@ -241,6 +260,8 @@ pub struct Field {
     try_setter: Flag,
     #[darling(default)]
     field: FieldMeta,
+    #[darling(default, rename = "attrs")]
+    nested_attrs: NestedAttrs,
 }
 
 impl FlagVisibility for Field {
@@ -592,6 +613,7 @@ impl<'a> FieldWithDefaults<'a> {
             field_enabled: self.field_enabled(),
             field_visibility: self.field_vis(),
             pass_attrs: &self.field.attrs,
+            nested_attrs: &self.field.nested_attrs.attrs,
         }
     }
 }
