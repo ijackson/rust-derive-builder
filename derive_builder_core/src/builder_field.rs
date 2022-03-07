@@ -43,8 +43,8 @@ pub struct BuilderField<'a> {
     pub field_enabled: bool,
     /// Visibility of this builder field, e.g. `syn::Visibility::Public`.
     pub field_visibility: syn::Visibility,
-    /// Attributes which will be attached to this builder field.
-    pub attrs: &'a [syn::Attribute],
+    /// Attributes passed through, to be attached to this builder field.
+    pub pass_attrs: &'a [syn::Attribute],
 }
 
 impl<'a> ToTokens for BuilderField<'a> {
@@ -53,18 +53,18 @@ impl<'a> ToTokens for BuilderField<'a> {
             let vis = &self.field_visibility;
             let ident = self.field_ident;
             let ty = self.field_type;
-            let attrs = self.attrs;
+            let pass_attrs = self.pass_attrs;
 
             tokens.append_all(quote!(
-                #(#attrs)* #vis #ident: ::derive_builder::export::core::option::Option<#ty>,
+                #(#pass_attrs)* #vis #ident: ::derive_builder::export::core::option::Option<#ty>,
             ));
         } else {
             let ident = self.field_ident;
             let ty = self.field_type;
-            let attrs = self.attrs;
+            let pass_attrs = self.pass_attrs;
 
             tokens.append_all(quote!(
-                #(#attrs)* #ident: ::derive_builder::export::core::marker::PhantomData<#ty>,
+                #(#pass_attrs)* #ident: ::derive_builder::export::core::marker::PhantomData<#ty>,
             ));
         }
     }
@@ -89,7 +89,7 @@ macro_rules! default_builder_field {
             field_type: &parse_quote!(String),
             field_enabled: true,
             field_visibility: parse_quote!(pub),
-            attrs: &[parse_quote!(#[some_attr])],
+            pass_attrs: &[parse_quote!(#[some_attr])],
         }
     }};
 }

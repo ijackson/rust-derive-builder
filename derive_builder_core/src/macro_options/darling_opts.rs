@@ -591,7 +591,7 @@ impl<'a> FieldWithDefaults<'a> {
             field_type: &self.field.ty,
             field_enabled: self.field_enabled(),
             field_visibility: self.field_vis(),
-            attrs: &self.field.attrs,
+            pass_attrs: &self.field.attrs,
         }
     }
 }
