@@ -504,6 +504,23 @@
 //! # fn main() {}
 //! ```
 //!
+//! ### Additional attributes on fields in the builder
+//!
+//! You can set other attributes on the field in the builder:
+//!
+//! ```rust
+//! # #[macro_use]
+//! # extern crate derive_builder;
+//! #
+//! #[derive(Builder)]
+//! #[builder(derive(serde::Deserialize))]
+//! struct Lorem {
+//!     #[builder(attrs(serde(rename="dolor")))]
+//!     ipsum: String,
+//! }
+//! # fn main() {}
+//! ```
+//!
 //! # **`#![no_std]`** Support (on Nightly)
 //!
 //! You can activate support for `#![no_std]` by adding `#[builder(no_std)]` to your struct
