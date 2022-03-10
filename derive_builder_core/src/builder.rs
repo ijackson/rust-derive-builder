@@ -175,6 +175,7 @@ impl<'a> ToTokens for Builder<'a> {
                     quote!(#[derive(#traits)])
                 }
             };
+            dbg!(&derive_attr);
 
             let builder_doc_comment = &self.doc_comment;
             let deprecation_notes = &self.deprecation_notes.as_item();
