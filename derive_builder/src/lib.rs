@@ -513,12 +513,16 @@
 //! # extern crate derive_builder;
 //! #
 //! #[derive(Builder)]
-//! #[builder(derive(serde::Deserialize))]
+//! #[builder(derive(serde::Serialize))]
 //! struct Lorem {
 //!     #[builder(attrs(serde(rename="dolor")))]
 //!     ipsum: String,
 //! }
-//! # fn main() {}
+//! # fn main() {
+//!     let mut show = LoremBuilder::default();
+//!     show.ipsum("sit".into());
+//!     assert_eq!(serde_json::to_string(&show).unwrap(), r#"{"dolor":"sit"}"#);
+//! # }
 //! ```
 //!
 //! # **`#![no_std]`** Support (on Nightly)
