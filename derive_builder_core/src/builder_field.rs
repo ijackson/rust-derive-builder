@@ -64,10 +64,12 @@ impl<'a> ToTokens for BuilderField<'a> {
                 .nested_attrs
                 .iter()
                 .map(|meta| quote_spanned!(meta.span() => #[#meta]));
-            tokens.append_all(quote!(
+            let q = quote!(
                 #(#pass_attrs)* #(#nested_attrs)*
                 #vis #ident: ::derive_builder::export::core::option::Option<#ty>,
-            ));
+            );
+            eprintln!("FIELD {}", q);
+            tokens.append_all(q);
         } else {
             let ident = self.field_ident;
             let ty = self.field_type;
