@@ -515,7 +515,9 @@
 //! #[derive(Builder)]
 //! #[builder(derive(serde::Serialize))]
 //! struct Lorem {
-//!     #[builder(attrs(serde(rename="dolor")))]
+//!     #[builder(attrs(
+//!                 serde(rename="dolor")
+//!     ))]
 //!     ipsum: String,
 //! }
 //! # fn main() {
