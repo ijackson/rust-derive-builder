@@ -69,6 +69,7 @@ impl<'a> ToTokens for BuilderField<'a> {
                 #vis #ident: ::derive_builder::export::core::option::Option<#ty>,
             );
             eprintln!("FIELD {}", q);
+            dbg!(&q);
             tokens.append_all(q);
         } else {
             let ident = self.field_ident;
