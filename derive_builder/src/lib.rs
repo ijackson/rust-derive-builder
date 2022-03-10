@@ -521,7 +521,7 @@
 //! # fn main() {
 //!     let mut show = LoremBuilder::default();
 //!     show.ipsum("sit".into());
-//!     assert_eq!(serde_json::to_string(&show).unwrap(), r#"{"dolor":"sit"}"#);
+//!     assert_eq!(serde_json::to_string(&show).unwrap(), r#"{"dolor":"sitx"}"#);
 //! # }
 //! ```
 //!
