@@ -21,7 +21,7 @@ std = []
 clippy = ["derive_builder_macro/clippy"]
 
 [dependencies]
-derive_builder_macro = { version = "=0.11.2", path = "../derive_builder_macro" }
+derive_builder_macro = { version = "=0.11.2", git = "https://github.com/ijackson/rust-derive-builder", rev = "a69d5eee830bddd5ff9b146b51e27580b1a7b6b0"}
 
 [dev-dependencies]
 pretty_assertions = "0.6.1"
