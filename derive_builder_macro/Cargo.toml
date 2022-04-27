@@ -23,4 +23,4 @@ clippy = ["derive_builder_core/clippy"]
 
 [dependencies]
 syn = { version = "1.0.91", features = ["full", "extra-traits"] }
-derive_builder_core = { version = "=0.11.2", path = "../derive_builder_core" }
+derive_builder_core = { version = "=0.11.2", git = "https://github.com/ijackson/rust-derive-builder", rev = "4516209ce98f6506bf729aa7cdbced97747f7dd1" }
