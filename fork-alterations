@@ -1,0 +1,68 @@
+#!/bin/bash
+set -e
+
+fixrepo='s{https://github.com/colin-kiegel/}{https://github.com/ijackson/}';
+
+export xdocs=\
+'## **THIS IS A FORK**
+
+This version of `derive_builder` has an additional `sub_builder` feature,
+which [has not been accepted upstream](https://github.com/colin-kiegel/rust-derive-builder/issues/254).
+We may add further additional features.
+
+In other respects, this fork is likely to lag behind the upstream crate.
+'
+
+export xauthor='"Ian Jackson <iwj@torproject.org>",
+           '
+
+perl -wi~ -pe '
+	use strict;
+	our $section = $_ if m/^\[/;
+	if ($section =~ m/^\[package/) {
+		s/(derive_builder[a-z_]*)/$&_fork_arti/
+			if (m/^name/ || m/^documentation/) && !m/_fork_arti/;
+		s/\[/$&$ENV{xauthor}/ if m/^author/ && !m/\biwj\@torproject\b/;
+		'"$fixrepo"' if m/^repository/;
+	}
+	if ($section =~ m/dependencies/) {
+		s/^((derive_builder[a-z_]*).*?)\s*\}\s*$/$1, package = "${2}_fork_arti" }\n/
+			unless m/ package = /;
+	}
+' */Cargo.toml
+
+add_docs_note='
+'
+
+for f in */README.md; do perl -wi~ -pe '
+	use strict;
+	if (!(m/^$/..0)) {
+		'"$fixrepo"';
+		s{derive_builder[a-z_]*}{${&}_fork_arti}g unless m/_fork_arti/;
+	}
+	our $done;
+	if (
+		(m/^\#/..0) &&
+		(m/^$/..0) && 
+		m/^\#/ &&
+		!$done++ &&
+		!m/THIS IS A FORK/
+	) {
+		$_ = $ENV{xdocs}."\n".$_;
+        }
+'  $f; done
+
+for f in */src/lib.rs; do perl -wi~ -pe '
+	use strict;
+	our $done;
+	if (
+		m{^//! *$} &&
+		!$done++ &&
+		!m/THIS IS A FORK/
+	) {
+		my $xdocs = "\n".$ENV{xdocs};
+		$xdocs =~ s{^}{//! }mg;
+		$xdocs =~ s{ $}{}mg;
+		$_ = $xdocs.$_;
+	}
+' $f; done
