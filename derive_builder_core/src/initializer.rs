@@ -82,6 +82,18 @@ impl<'a> ToTokens for Initializer<'a> {
                     FieldConversion::Block(conv) => {
                         conv.to_tokens(tokens);
                     }
+                    FieldConversion::Method(meth) => {
+                        let span = self
+                            .custom_error_type_span
+                            .unwrap_or_else(|| self.field_ident.span());
+                        let field_name = self.field_ident.to_string();
+                        tokens.append_all(quote_spanned!(span=>
+                            ::derive_builder::export::core::result::Result::map_err(
+                                self.#builder_field.#meth(),
+                                |e| ::derive_builder::SubfieldBuildError::new(#field_name, e),
+                            )?
+                        ));
+                    }
                     FieldConversion::Move => tokens.append_all(quote!( self.#builder_field )),
                     FieldConversion::OptionOrDefault => {
                         let match_some = self.match_some();
@@ -148,6 +160,8 @@ pub enum FieldConversion<'a> {
     OptionOrDefault,
     /// Custom conversion is a block contents expression
     Block(&'a BlockContents),
+    /// Custom conversion is a method to be called on the corresponding builder field
+    Method(&'a syn::Ident),
     /// Custom conversion is just to move the field from the builder
     Move,
 }
