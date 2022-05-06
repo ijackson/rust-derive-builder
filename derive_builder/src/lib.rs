@@ -1,5 +1,13 @@
 //! Derive a builder for a struct
 //!
+//! ## **THIS IS A FORK**
+//!
+//! This version of `derive_builder` has an additional `sub_builder` feature,
+//! which [has not been accepted upstream](https://github.com/colin-kiegel/rust-derive-builder/issues/254).
+//! We may add further additional features.
+//!
+//! In other respects, this fork is likely to lag behind the upstream crate.
+//!
 //! This crate implements the [builder pattern] for you.
 //! Just apply `#[derive(Builder)]` to a struct `Foo`, and it will derive an additional
 //! struct `FooBuilder` with **setter**-methods for all fields and a **build**-method

@@ -1,5 +1,13 @@
 //! Internal helper library for the `derive_builder` crate.
 //!
+//! ## **THIS IS A FORK**
+//!
+//! This version of `derive_builder` has an additional `sub_builder` feature,
+//! which [has not been accepted upstream](https://github.com/colin-kiegel/rust-derive-builder/issues/254).
+//! We may add further additional features.
+//!
+//! In other respects, this fork is likely to lag behind the upstream crate.
+//!
 //! **Important Note**:
 //!
 //! * You are probably looking for the [`derive_builder`] crate,

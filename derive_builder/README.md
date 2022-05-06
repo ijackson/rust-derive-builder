@@ -1,13 +1,21 @@
-![Build](https://github.com/colin-kiegel/rust-derive-builder/workflows/Build/badge.svg)
+![Build](https://github.com/ijackson/rust-derive-builder/workflows/Build/badge.svg)
 [![Rust version](https://img.shields.io/badge/rust-1.40+-blue.svg)]()
-[![Documentation](https://docs.rs/derive_builder/badge.svg)](https://docs.rs/derive_builder)
-[![Latest version](https://img.shields.io/crates/v/derive_builder.svg)](https://crates.io/crates/derive_builder)
-[![All downloads](https://img.shields.io/crates/d/derive_builder.svg)](https://crates.io/crates/derive_builder)
-[![Downloads of latest version](https://img.shields.io/crates/dv/derive_builder.svg)](https://crates.io/crates/derive_builder)
+[![Documentation](https://docs.rs/derive_builder_fork_arti/badge.svg)](https://docs.rs/derive_builder_fork_arti)
+[![Latest version](https://img.shields.io/crates/v/derive_builder_fork_arti.svg)](https://crates.io/crates/derive_builder_fork_arti)
+[![All downloads](https://img.shields.io/crates/d/derive_builder_fork_arti.svg)](https://crates.io/crates/derive_builder_fork_arti)
+[![Downloads of latest version](https://img.shields.io/crates/dv/derive_builder_fork_arti.svg)](https://crates.io/crates/derive_builder_fork_arti)
 
 # Builder Pattern Derive
 
 [Rust][rust] macro to automatically implement the **builder pattern** for arbitrary structs. A simple `#[derive(Builder)]` will generate a `FooBuilder` for your struct `Foo` with all setter-methods and a build method.
+
+## **THIS IS A FORK**
+
+This version of `derive_builder` has an additional `sub_builder` feature,
+which [has not been accepted upstream](https://github.com/colin-kiegel/rust-derive-builder/issues/254).
+We may add further additional features.
+
+In other respects, this fork is likely to lag behind the upstream crate.
 
 ## How it Works
 

@@ -1,8 +1,8 @@
-![Build](https://github.com/colin-kiegel/rust-derive-builder/workflows/Build/badge.svg?branch=master)
-[![Documentation](https://docs.rs/derive_builder_core/badge.svg)](https://docs.rs/derive_builder_core)
-[![Latest version](https://img.shields.io/crates/v/derive_builder_core.svg)](https://crates.io/crates/derive_builder_core)
-[![All downloads](https://img.shields.io/crates/d/derive_builder_core.svg)](https://crates.io/crates/derive_builder_core)
-[![Downloads of latest version](https://img.shields.io/crates/dv/derive_builder_core.svg)](https://crates.io/crates/derive_builder_core)
+![Build](https://github.com/ijackson/rust-derive-builder/workflows/Build/badge.svg?branch=master)
+[![Documentation](https://docs.rs/derive_builder_core_fork_arti/badge.svg)](https://docs.rs/derive_builder_core_fork_arti)
+[![Latest version](https://img.shields.io/crates/v/derive_builder_core_fork_arti.svg)](https://crates.io/crates/derive_builder_core_fork_arti)
+[![All downloads](https://img.shields.io/crates/d/derive_builder_core_fork_arti.svg)](https://crates.io/crates/derive_builder_core_fork_arti)
+[![Downloads of latest version](https://img.shields.io/crates/dv/derive_builder_core_fork_arti.svg)](https://crates.io/crates/derive_builder_core_fork_arti)
 
 # Crate [`derive_builder_core`]
 
@@ -12,6 +12,14 @@
   which wraps this crate and is much more ergonomic to use.
 * The API of this crate might **change frequently** in the near future.
   The [`derive_builder`] crate also provides a much more stable API.
+
+## **THIS IS A FORK**
+
+This version of `derive_builder` has an additional `sub_builder` feature,
+which [has not been accepted upstream](https://github.com/colin-kiegel/rust-derive-builder/issues/254).
+We may add further additional features.
+
+In other respects, this fork is likely to lag behind the upstream crate.
 
 ## Purpose
 

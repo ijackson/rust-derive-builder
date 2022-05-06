@@ -1,14 +1,15 @@
 [package]
-name = "derive_builder"
+name = "derive_builder_fork_arti"
 version = "0.11.2"
-authors = ["Colin Kiegel <kiegel@gmx.de>",
+authors = ["Ian Jackson <iwj@torproject.org>",
+           "Colin Kiegel <kiegel@gmx.de>",
            "Pascal Hertleif <killercup@gmail.com>",
            "Jan-Erik Rediger <janerik@fnordig.de>",
            "Ted Driggs <ted.driggs@outlook.com>"]
 
 description = "Rust macro to automatically implement the builder pattern for arbitrary structs."
-repository = "https://github.com/colin-kiegel/rust-derive-builder"
-documentation = "https://docs.rs/derive_builder/0.11.2"
+repository = "https://github.com/ijackson/rust-derive-builder"
+documentation = "https://docs.rs/derive_builder_fork_arti/0.11.2"
 
 license = "MIT/Apache-2.0"
 categories = ["development-tools", "rust-patterns"]
@@ -21,7 +22,7 @@ std = []
 clippy = ["derive_builder_macro/clippy"]
 
 [dependencies]
-derive_builder_macro = { version = "=0.11.2", path = "../derive_builder_macro" }
+derive_builder_macro = { version = "=0.11.2", path = "../derive_builder_macro", package = "derive_builder_macro_fork_arti" }
 
 [dev-dependencies]
 pretty_assertions = "0.6.1"

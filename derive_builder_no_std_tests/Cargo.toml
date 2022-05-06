@@ -1,7 +1,8 @@
 [package]
-name = "derive_builder_no_std_tests"
+name = "derive_builder_no_std_tests_fork_arti"
 version = "0.1.0"
-authors = ["Andrey Kutejko <andy128k@gmail.com>"]
+authors = ["Ian Jackson <iwj@torproject.org>",
+           "Andrey Kutejko <andy128k@gmail.com>"]
 edition = "2018"
 publish = false
 
@@ -9,4 +10,4 @@ publish = false
 clippy = ["derive_builder/clippy"]
 
 [dependencies]
-derive_builder = { path = "../derive_builder", default-features = false }
+derive_builder = { path = "../derive_builder", default-features = false, package = "derive_builder_fork_arti" }
