@@ -4,7 +4,7 @@
 #![deny(missing_docs)]
 
 #[macro_use]
-extern crate derive_builder;
+extern crate derive_builder_fork_arti;
 
 /// Traditional form of communication.
 #[derive(Debug, Builder)]

@@ -2,7 +2,7 @@
 //! step.
 
 #[macro_use]
-extern crate derive_builder;
+extern crate derive_builder_fork_arti;
 
 #[derive(Builder, Debug, PartialEq)]
 #[builder(build_fn(validate = "Self::validate"))]

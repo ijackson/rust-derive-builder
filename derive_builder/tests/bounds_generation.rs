@@ -1,5 +1,5 @@
 #[macro_use]
-extern crate derive_builder;
+extern crate derive_builder_fork_arti;
 
 /// A struct that deliberately doesn't implement `Clone`.
 #[derive(Debug, Default, PartialEq, Eq)]

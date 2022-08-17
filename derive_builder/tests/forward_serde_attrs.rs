@@ -1,5 +1,5 @@
 #[macro_use]
-extern crate derive_builder;
+extern crate derive_builder_fork_arti;
 extern crate serde;
 extern crate serde_json;
 

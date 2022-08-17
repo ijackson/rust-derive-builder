@@ -1,7 +1,7 @@
 #![deny(non_snake_case)]
 
 #[macro_use]
-extern crate derive_builder;
+extern crate derive_builder_fork_arti;
 
 #[derive(Builder)]
 // If this attribute is not forwarded to both the struct and the impl block, there would

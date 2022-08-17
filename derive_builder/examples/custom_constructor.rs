@@ -1,7 +1,7 @@
 #![allow(dead_code)]
 
 #[macro_use]
-extern crate derive_builder;
+extern crate derive_builder_fork_arti;
 
 #[derive(Debug, Clone)]
 pub enum ContentType {
