@@ -2,6 +2,7 @@
 extern crate pretty_assertions;
 #[macro_use]
 extern crate derive_builder_fork_arti;
+use derive_builder_fork_arti as derive_builder;
 
 mod field_level {
     use derive_builder::UninitializedFieldError;

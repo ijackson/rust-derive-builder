@@ -7,6 +7,7 @@
 
 #[macro_use]
 extern crate derive_builder_fork_arti;
+use derive_builder_fork_arti as derive_builder;
 
 use derive_builder::UninitializedFieldError;
 use std::fmt;

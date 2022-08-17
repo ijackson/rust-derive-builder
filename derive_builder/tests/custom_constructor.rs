@@ -2,6 +2,7 @@
 extern crate pretty_assertions;
 #[macro_use]
 extern crate derive_builder_fork_arti;
+use derive_builder_fork_arti as derive_builder;
 
 #[derive(Debug, PartialEq, Eq, Builder)]
 #[builder(custom_constructor, build_fn(private, name = "fallible_build"))]

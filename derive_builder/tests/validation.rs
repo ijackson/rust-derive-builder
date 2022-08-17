@@ -1,5 +1,6 @@
 #[macro_use]
 extern crate derive_builder_fork_arti;
+use derive_builder_fork_arti as derive_builder;
 
 #[derive(Debug, Clone, Builder, PartialEq, Eq)]
 #[builder(build_fn(validate = "LoremBuilder::validate"))]

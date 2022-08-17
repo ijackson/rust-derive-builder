@@ -3,6 +3,7 @@
 
 #[macro_use]
 extern crate derive_builder_fork_arti;
+use derive_builder_fork_arti as derive_builder;
 
 #[derive(Builder, Debug, PartialEq)]
 #[builder(build_fn(validate = "Self::validate"))]
